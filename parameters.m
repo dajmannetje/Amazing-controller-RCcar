@@ -15,6 +15,6 @@ Wheel_r = 11.3/2/100; % wheelradius in meters
 
 a = (WeightRear/WeightTotal) * Wheelbase % length from the center of gravity to the front axle
 b = (WeightFront/WeightTotal) * Wheelbase % length from the center of gravity to the rear axle
-Weightdistribution = a/Wheelbase; 
+Weightdistribution = WeightRear/WeightTotal; % fraction of weight on the rear tires
 
 %%
