@@ -12,7 +12,7 @@ m = m_r + m_f;      % total weight of the car in grams
 l = 53.5/100;       % wheelbase in meters
 c = 38/100;         % trackwidth in meters
 W = 5.5/100;        % width of contact area in meters
-R = 11.3/2/100;     % wheelradius in meters
+R_wheel = 11.3/2/100;     % wheelradius in meters
 
 a = (m_r/m) * l;    % length from the center of gravity to the front axle
 b = (m_f/m) * l;    % length from the center of gravity to the rear axle
