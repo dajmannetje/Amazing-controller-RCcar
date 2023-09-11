@@ -1,12 +1,12 @@
 %% parameter calculations
 
-LR = mean([3880,3850,3920]); % Weight on left rear tire
-LF = mean([2855,2873,2875]); % Weight on left front tire
-RF = mean([2985,2972,2725]); % Weight on right front tire
-RR = mean([3814,3834,3909]); % Weight on right rear tire
+m_LR = mean([3880,3850,3920]); % Weight on left rear tire
+m_LF = mean([2855,2873,2875]); % Weight on left front tire
+m_RF = mean([2985,2972,2725]); % Weight on right front tire
+m_RR = mean([3814,3834,3909]); % Weight on right rear tire
 
-m_f = LF+RF;        % weight on the front axle in grams
-m_r = LR+RR;        % weight on the rear axle in grams
+m_f = m_LF+m_RF;    % weight on the front axle in grams
+m_r = m_LR+m_RR;    % weight on the rear axle in grams
 m = m_r + m_f;      % total weight of the car in grams
 
 l = 53.5/100;       % wheelbase in meters
