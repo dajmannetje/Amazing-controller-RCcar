@@ -13,4 +13,4 @@ pivotal control challenges: the management of yaw rate to achieve enhanced vehic
 oversteer, and the implementation of traction control mechanisms aimed at averting undue wheel slip.
 The effectiveness of these solutions will be assessed through real-world experimentation, facilitated by the
 utilization of Matlab/Simulink.
-Page 1
+
