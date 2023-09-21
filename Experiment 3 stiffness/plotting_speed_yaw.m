@@ -1,5 +1,12 @@
-%% Load all data
-for i = 1:8
+%% Matlab script for plotting speed per yaw rate
+
+% Clear workspace and command window
+clear all;
+clc;
+
+
+%% Loading data
+for i = 1:5
     if i == 1
         load('experiment 1.mat')
         yawrate_1 = yawrate;
@@ -38,6 +45,34 @@ for i = 1:8
     end
 end
 
+
+%% Uncomment for loading data constant speed        
+% for i = 6:8    
+%     if i == 6
+%         load('experiment 6 (constant v15).mat')
+%         yawrate_6 = yawrate;
+%         speed_FL_6 = speed_FL;
+%         speed_FR_6 = speed_FR;
+%         speed_RL_6 = speed_RL;
+%         speed_RR_6 = speed_RR; 
+%     elseif i == 7
+%         load('experiment 7 (constant v15).mat')
+%         yawrate_7 = yawrate;
+%         speed_FL_7 = speed_FL;
+%         speed_FR_7 = speed_FR;
+%         speed_RL_7 = speed_RL;
+%         speed_RR_7 = speed_RR;
+%     elseif i == 8
+%         load('experiment 8 (constant v12).mat')
+%         yawrate_8 = yawrate;
+%         speed_FL_8 = speed_FL;
+%         speed_FR_8 = speed_FR;
+%         speed_RL_8 = speed_RL;
+%         speed_RR_8 = speed_RR; 
+%     end
+% end
+
+%% Taking the mean of the data
 speed_1 = transpose([speed_FL_1, speed_FR_1]);
 speed_ave_1 = mean(speed_1);
 
@@ -53,17 +88,47 @@ speed_ave_4 = mean(speed_4);
 speed_5 = transpose([speed_FL_5, speed_FR_5]);
 speed_ave_5 = mean(speed_5);
 
-speed_ave = [speed_1, speed_2, speed_3, speed_4, speed_5];
-yawrate = [yawrate_1, yawrate_2, yawrate_3, yawrate_4, yawrate_5];
+%% Uncomment for mean of data with constant speed
 
+% speed_6 = transpose([speed_FL_6, speed_FR_6]);
+% speed_ave_6 = mean(speed_6);
+% 
+% speed_7 = transpose([speed_FL_7, speed_FR_7]);
+% speed_ave_7 = mean(speed_7);
+% 
+% speed_8 = transpose([speed_FL_8, speed_FR_8]);
+% speed_ave_8 = mean(speed_8);
+
+% speed_ave = transpose([speed_ave_1, speed_ave_2, speed_ave_3, speed_ave_4, speed_ave_5]);
+% yawrate = [yawrate_1; yawrate_2; yawrate_3; yawrate_4; yawrate_5];
+
+%% Plotting
+color = [199, 25, 24]/256;
 figure
-scatter(speed_ave, -yawrate, '.');
+scatter(abs(speed_ave_1), abs(yawrate_1), '.', 'MarkerEdgeColor', color);
+hold on 
+scatter(abs(speed_ave_2), abs(yawrate_2), '.', 'MarkerEdgeColor', color);
+scatter(abs(speed_ave_3), abs(yawrate_3), '.', 'MarkerEdgeColor', color);
+scatter(abs(speed_ave_4), abs(yawrate_4), '.', 'MarkerEdgeColor', color);
+scatter(abs(speed_ave_5), abs(yawrate_5), '.', 'MarkerEdgeColor', color);
 
 grid on
 xlim([0 4])
 ylim([0 2.5])
-
 title('Yaw rate per longitudinal velocity', 'Interpreter', 'latex')
 xlabel('Velocity (m/s)', 'Interpreter', 'latex') 
 ylabel('Yaw Rate (rad/s)', 'Interpreter', 'latex') 
-% legend({'Front-right tire','Front-left tire'},'Location','northeast', 'Interpreter', 'latex')
+hold off
+
+%% Uncomment for legend
+%legend({'Test 1','Test 2', 'Test 3', 'Test 4', 'Test 5'},'Location','northwest', 'Interpreter', 'latex')
+
+%% Uncomment for plot with constant speed 
+
+% scatter(abs(speed_ave_6), abs(yawrate_6), 'x');
+% scatter(abs(speed_ave_7), abs(yawrate_7), 'x');
+% scatter(abs(speed_ave_8), abs(yawrate_8), 'x');
+% scatter(speed_ave, -yawrate, '.');
+
+
+
