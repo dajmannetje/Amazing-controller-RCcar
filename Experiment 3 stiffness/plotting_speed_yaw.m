@@ -4,6 +4,15 @@
 clear all;
 clc;
 
+% Load the Simulink model (replace 'your_model_name' with your model's name)
+load_system('simulinkModel');
+
+% Set simulation parameters if needed
+% For example, setting the simulation time to 10 seconds
+set_param('simulinkModel', 'StopTime', '50');
+
+% Simulate the model
+out = sim('simulinkModel');
 
 %% Loading data
 for i = 1:5
@@ -105,12 +114,13 @@ speed_ave_5 = mean(speed_5);
 %% Plotting
 color = [199, 25, 24]/256;
 figure
-scatter(abs(speed_ave_1), abs(yawrate_1), '.', 'MarkerEdgeColor', color);
+%scatter(abs(speed_ave_1), abs(yawrate_1), '.', 'MarkerEdgeColor', color);
 hold on 
 scatter(abs(speed_ave_2), abs(yawrate_2), '.', 'MarkerEdgeColor', color);
-scatter(abs(speed_ave_3), abs(yawrate_3), '.', 'MarkerEdgeColor', color);
-scatter(abs(speed_ave_4), abs(yawrate_4), '.', 'MarkerEdgeColor', color);
-scatter(abs(speed_ave_5), abs(yawrate_5), '.', 'MarkerEdgeColor', color);
+%scatter(abs(speed_ave_3), abs(yawrate_3), '.', 'MarkerEdgeColor', color);
+%scatter(abs(speed_ave_4), abs(yawrate_4), '.', 'MarkerEdgeColor', color);
+%scatter(abs(speed_ave_5), abs(yawrate_5), '.', 'MarkerEdgeColor', color);
+plot(out.longitudinal_velocity.Data,out.yaw_velocity.Data, 'g','LineWidth',3)
 
 grid on
 xlim([0 4])
