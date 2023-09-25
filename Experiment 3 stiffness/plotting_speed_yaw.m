@@ -4,6 +4,10 @@
 clear all;
 clc;
 
+Kp = 5;
+Ki = 0.04;
+
+
 % Load the Simulink model (replace 'your_model_name' with your model's name)
 load_system('simulinkModel');
 
@@ -120,7 +124,7 @@ scatter(abs(speed_ave_2), abs(yawrate_2), '.', 'MarkerEdgeColor', color);
 %scatter(abs(speed_ave_3), abs(yawrate_3), '.', 'MarkerEdgeColor', color);
 %scatter(abs(speed_ave_4), abs(yawrate_4), '.', 'MarkerEdgeColor', color);
 %scatter(abs(speed_ave_5), abs(yawrate_5), '.', 'MarkerEdgeColor', color);
-plot(out.longitudinal_velocity.Data,out.yaw_velocity.Data, 'g','LineWidth',3)
+plot(out.longitudinal_velocity.Data(30:1001),out.yaw_velocity.Data(30:1001), 'g','LineWidth',3)
 
 grid on
 xlim([0 4])
