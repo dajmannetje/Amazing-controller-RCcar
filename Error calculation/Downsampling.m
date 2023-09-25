@@ -19,9 +19,9 @@ speed_2 = transpose([speed_FL_2, speed_FR_2]);
 speed_ave_2 = mean(speed_2);
 
 color = [199, 25, 24]/256;
-figure;
-scatter(abs(speed_ave_2), abs(yawrate_2), '.', 'MarkerEdgeColor', color, 'DisplayName', 'Original Data')
-hold on;
+%figure;
+%scatter(abs(speed_ave_2), abs(yawrate_2), '.', 'MarkerEdgeColor', color, 'DisplayName', 'Original Data')
+%hold on;
 
 x = abs(speed_ave_2);
 y = abs(yawrate_2);
@@ -39,7 +39,7 @@ while j < length(x)
 end
 j = 1;
 while j < length(y)
-    if x(j) > 3.1 && y(j) < 1.5
+    if x(j) > 2.7 && y(j) < 1.5
         x(j) = [];
         y(j) = [];
         j = j;
@@ -63,10 +63,37 @@ y_downsampled = arrayfun(@(i) mean(y(i:i+step-1)), 1:step:length(y)-step+1)';
 
 % Create a scatter plot of the downsampled data
 
-scatter(x_downsampled, y_downsampled, 'Marker', 'x', 'MarkerEdgeColor', 'r', 'DisplayName', 'Downsampled Data');
+%scatter(x_downsampled, y_downsampled, 'Marker', 'x', 'MarkerEdgeColor', 'r', 'DisplayName', 'Downsampled Data');
+
+x_exp = x_downsampled;
+y_exp = y_downsampled;
+%%
+
+% Load the Simulink model (replace 'your_model_name' with your model's name)
+load_system('simulinkModel');
+
+% Set simulation parameters if needed
+% For example, setting the simulation time to 10 seconds
+set_param('simulinkModel', 'StopTime', '50');
+
+% Simulate the model
+out = sim('simulinkModel');
+
+x_model = out.longitudinal_velocity.Data(30:300);
+y_model = out.yaw_velocity.Data(30:300);
+
+figure
+scatter(x_exp, y_exp, 'Marker', 'x', 'MarkerEdgeColor', 'r', 'DisplayName', 'Downsampled Data');
+hold on
+plot(x_model,y_model, 'g','LineWidth',3)
+
 
 
 %%
+
+
+
+
 
 modelVelocity = abs(speed_ave_2); % Extract model velocity data
 modelYawRate = abs(yawrate_2);    % Extract model yaw rate data
