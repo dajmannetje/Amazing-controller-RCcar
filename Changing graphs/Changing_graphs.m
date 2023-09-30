@@ -13,7 +13,7 @@ legend(legend_labels, 'Location', 'southeast', 'Interpreter', 'latex');
 
 % Change the current title
 new_title = 'Yaw rate per longitudinal velocity (with controller)';
-title(new_title);
+title(new_title, 'Interpreter', 'latex');
 
 % Printing the figure
 print -depsc Controlled_ur_graph
@@ -30,7 +30,7 @@ legend(legend_labels, 'Location', 'southeast', 'Interpreter', 'latex');
 
 % Change the current title
 new_title = 'Yaw rate per longitudinal velocity (without controller)';
-title(new_title);
+title(new_title, 'Interpreter', 'latex');
 
 % Printing the figure
 print -depsc Uncontrolled_ur_graph
@@ -46,12 +46,12 @@ legend_labels = {'Vehicle path'};
 legend(legend_labels, 'Location', 'northeast', 'Interpreter', 'latex'); 
 
 % Add x and y axis labels
-xlabel('X-Axis');
-ylabel('Y-Axis');
+xlabel('X-Axis', 'Interpreter', 'latex');
+ylabel('Y-Axis', 'Interpreter', 'latex');
 
 % Change the current title
 new_title = 'Controlled vehicle driving circle (with model)';
-title(new_title);
+title(new_title, 'Interpreter', 'latex');
 
 % Printing the figure
 print -depsc Controlled_XY
@@ -67,12 +67,12 @@ legend_labels = {'Vehicle path'};
 legend(legend_labels, 'Location', 'northeast', 'Interpreter', 'latex'); 
 
 % Add x and y axis labels
-xlabel('X-Axis');
-ylabel('Y-Axis');
+xlabel('X-Axis', 'Interpreter', 'latex');
+ylabel('Y-Axis', 'Interpreter', 'latex');
 
 % Change the current title
 new_title = 'Uncontrolled vehicle driving circle (without model)';
-title(new_title);
+title(new_title, 'Interpreter', 'latex');
 
 % Printing the figure
 print -depsc Uncontrolled_XY
