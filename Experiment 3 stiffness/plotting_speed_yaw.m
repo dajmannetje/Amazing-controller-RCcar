@@ -8,7 +8,7 @@ Kp = 5;
 Ki = 0.04;
 
 
-% Load the Simulink model (replace 'your_model_name' with your model's name)
+% Load the Simulink model
 load_system('simulinkModel');
 
 % Set simulation parameters if needed
