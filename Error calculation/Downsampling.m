@@ -86,7 +86,8 @@ figure
 scatter(x_exp, y_exp, 'Marker', 'x', 'MarkerEdgeColor', 'r', 'DisplayName', 'Downsampled Data');
 hold on
 plot(x_model,y_model, 'g','LineWidth',3)
-
+%x is velocity 
+%y is yawrate
 
 
 %%
@@ -95,11 +96,11 @@ plot(x_model,y_model, 'g','LineWidth',3)
 
 
 
-modelVelocity = abs(speed_ave_2); % Extract model velocity data
-modelYawRate = abs(yawrate_2);    % Extract model yaw rate data
+modelVelocity = x_model; % Extract model velocity data
+modelYawRate = y_model;    % Extract model yaw rate data
 
-experimentalSpeed = out.longitudinal_velocity.Data; % Extract experimental speed data
-experimentalYawRate = out.yaw_velocity.Data;        % Extract experimental yaw rate data
+experimentalSpeed = x_exp; % Extract experimental speed data
+experimentalYawRate = y_exp;        % Extract experimental yaw rate data
 
 % Make sure the input vectors have the same length
 minLength = min(length(experimentalSpeed), length(modelVelocity)); % Determine the minimum length
@@ -122,33 +123,5 @@ disp(['Correlation Coefficient (Velocity): ', num2str(correlation_velocity)]);
 disp(['Correlation Coefficient (Yaw Rate): ', num2str(correlation_yawrate)]);
 
 
-
-%MORE CODE 
-% Example experimental data (replace with your actual data)
-experimentalSpeed = out.longitudinal_velocity.Data;
-experimentalYawRate = out.yaw_velocity.Data;
-
-% Calculate RMSE (Root Mean Squared Error)
-rmse_velocity = sqrt(mean((experimentalSpeed - modelVelocity).^2));
-rmse_yawrate = sqrt(mean((experimentalYawRate - modelYawRate).^2));
-
-% Calculate MAE (Mean Absolute Error)
-% Example experimental data (replace with your actual data)
-experimentalSpeed = out.longitudinal_velocity.Data;
-experimentalYawRate = out.yaw_velocity.Data;
-
-% Calculate RMSE (Root Mean Squared Error)
-rmse_velocity = sqrt(mean((experimentalSpeed - modelVelocity).^2));
-rmse_yawrate = sqrt(mean((experimentalYawRate - modelYawRate).^2));
-
-% Calculate MAE (Mean Absolute Error)
-mae_velocity = mean(abs(experimentalSpeed - modelVelocity));
-mae_yawrate = mean(abs(experimentalYawRate - modelYawRate));
-
-disp(['Root Mean Squared Error (Velocity): ', num2str(rmse_velocity)]);
-disp(['Mean Absolute Error (Velocity): ', num2str(mae_velocity)]);
-
-disp(['Root Mean Squared Error (Yaw Rate): ', num2str(rmse_yawrate)]);
-disp(['Mean Absolute Error (Yaw Rate): ', num2str(mae_yawrate)]);
 
 
