@@ -1,4 +1,4 @@
-%% Experiment controller 3 on car 2
+%% Experiment controller 4 on car
 clear all;
 clc; 
 
@@ -14,7 +14,7 @@ speed_no_controller = transpose([speed_FL_no_controller, speed_FR_no_controller]
 speed_ave_no_controller = mean(speed_no_controller);
 
 %% Load all data of experiments
-for i = 1:1     % Change to number of experiments
+for i = 1:2     % Change to number of experiments
     if i == 1
         % Kp = 0.3, Ki = 0
         load('experiment_1.mat')
@@ -26,8 +26,10 @@ for i = 1:1     % Change to number of experiments
         speed_RR_1 = speed_RR;    
         speed_1 = transpose([speed_FL_1, speed_FR_1]);
         speed_ave_1 = mean(speed_1);
+        throttle_out_left_1 = throttle_out_left;
+        throttle_out_right_1 = throttle_out_right;
     elseif i == 2
-        % Kp = 0, Ki = 0
+        % Kp = 1.5, Ki = 0.01
         load('experiment_2.mat')
         yawrate_2 = yawrate;
         time_2 = time;
@@ -100,15 +102,16 @@ for i = 1:1     % Change to number of experiments
     end
 end
 
+
 %% Plotting
 color = [199, 25, 24]/256;
 
 % No controller, experiment a
 figure(1)
-scatter(abs(speed_ave_no_controller), abs(yawrate_no_controller), '.');
+scatter(abs(speed_ave_no_controller), abs(yawrate_no_controller), 'b.');
 hold on 
 grid on
-scatter(abs(speed_ave_1), abs(yawrate_1), '.');
+scatter(abs(speed_ave_1), abs(yawrate_1), 'r.');
 xlim([0 4])
 ylim([0 2.5])
 title('No controller, experiment a', 'Interpreter', 'latex')
@@ -118,10 +121,10 @@ legend({'No controller','experiment a', 'model'},'Location','northwest', 'Interp
 
 % No controller, experiment b
 figure(2)
-scatter(abs(speed_ave_no_controller), abs(yawrate_no_controller), '.');
+scatter(abs(speed_ave_no_controller), abs(yawrate_no_controller), 'b.');
 hold on 
 grid on
-scatter(abs(speed_ave_2), abs(yawrate_2), '.');
+scatter(abs(speed_ave_2), abs(yawrate_2), 'r.');
 xlim([0 4])
 ylim([0 2.5])
 title('No controller, experiment b', 'Interpreter', 'latex')
@@ -129,17 +132,31 @@ xlabel('Velocity (m/s)', 'Interpreter', 'latex')
 ylabel('Yaw Rate (rad/s)', 'Interpreter', 'latex') 
 legend({'No controller','experiment b', 'model'},'Location','northwest', 'Interpreter', 'latex')
 
-% % experiment a, experiment b
-% figure(3)
-% scatter(abs(speed_ave_1), abs(yawrate_1), '.');
-% hold on 
+% experiment a, experiment b
+figure(3)
+scatter(abs(speed_ave_1), abs(yawrate_1), 'b.');
+hold on 
+grid on
+scatter(abs(speed_ave_2), abs(yawrate_2), 'r.');
+xlim([0 4])
+ylim([0 2.5])
+title('experiment a, experiment b', 'Interpreter', 'latex')
+xlabel('Velocity (m/s)', 'Interpreter', 'latex') 
+ylabel('Yaw Rate (rad/s)', 'Interpreter', 'latex') 
+legend({'experiment a','experiment b', 'model'},'Location','northwest', 'Interpreter', 'latex')
+
+
+% figure(4)
+% hold on
 % grid on
-% scatter(abs(speed_ave_2), abs(yawrate_2), '.');
-% xlim([0 4])
-% ylim([0 2.5])
-% title('experiment a, experiment b', 'Interpreter', 'latex')
-% xlabel('Velocity (m/s)', 'Interpreter', 'latex') 
-% ylabel('Yaw Rate (rad/s)', 'Interpreter', 'latex') 
-% legend({'experiment a','experiment b', 'model'},'Location','northwest', 'Interpreter', 'latex')
-% 
+% plot(time_1,throttle_out_left_1, "b");
+% plot(time_1,throttle_out_right_1, "r");
+% xlim([7 25]);
+% ylim([53 62]);
+% title('Test figure (replace in final report)', 'Interpreter', 'latex')
+% xlabel('Time [s]', 'Interpreter', 'latex') 
+% ylabel('Throttle [\%]', 'Interpreter', 'latex') 
+% legend({'Throttle left','Throttle right'},'Location','northeast', 'Interpreter', 'latex')
+
+
 
